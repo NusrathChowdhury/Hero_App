@@ -1,9 +1,8 @@
-import { TApp } from "@/types/app.type";
 import AppCard from "../shared/AppCard";
+import { getApps } from "@/lib/apps";
 
 const TrendingApp = async () => {
-  const res = await fetch("http://localhost:3001/data.json");
-  const data: TApp[] = await res.json();
+  const data = await getApps();
 
   return (
     <section className="my-20 w-full px-5 sm:px-8 lg:px-10">
@@ -25,7 +24,7 @@ const TrendingApp = async () => {
 
       {/* App Grid */}
       <div className="mx-auto mt-12 grid w-full max-w-[1400px] grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-        {data.map((app) => (
+        {data.slice(0, 8).map((app) => (
           <AppCard key={app.id} app={app} />
         ))}
       </div>

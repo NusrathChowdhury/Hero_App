@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { TApp } from "@/types/app.type";
 
 type TAppProps = {
@@ -6,7 +7,7 @@ type TAppProps = {
 
 const AppCard = ({ app }: TAppProps) => {
   return (
-    <div className="card bg-base-100 border border-base-200 shadow-sm">
+    <div className="card bg-base-100 border border-base-200 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
       <figure className="px-5 pt-5">
         <img
           src={app.image}
@@ -22,22 +23,25 @@ const AppCard = ({ app }: TAppProps) => {
           {app.companyName}
         </p>
 
-        <div className="flex items-center gap-2 mt-2">
-          <span>{app.ratingAvg}</span>
+        <div className="mt-2 flex items-center gap-2">
+          <span className="font-medium">{app.ratingAvg}</span>
 
           <span className="text-sm text-base-content/60">
             ({app.reviews})
           </span>
         </div>
 
-        <div className="flex justify-between text-sm text-base-content/60 mt-2">
+        <div className="mt-2 flex justify-between text-sm text-base-content/60">
           <span>{app.downloads} downloads</span>
           <span>{app.size} MB</span>
         </div>
 
-        <button className="btn btn-primary btn-sm w-full mt-4">
+        <Link
+          href={`/apps/${app.id}`}
+          className="btn btn-primary mt-4 w-full"
+        >
           View Details
-        </button>
+        </Link>
       </div>
     </div>
   );
