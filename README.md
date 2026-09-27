@@ -1,36 +1,76 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# App Marketplace
 
-## Getting Started
+A modern and responsive app marketplace built with Next.js, TypeScript, Tailwind CSS, and DaisyUI. Users can explore applications, view detailed information, and install apps through a simple and interactive interface.
 
-First, run the development server:
+## Live Website
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+Comming Soon
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Features
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- Browse a collection of popular applications.
+- View detailed information about each application.
+- Responsive design for desktop, tablet, and mobile devices.
+- Interactive app installation button with success notifications.
+- Installation page for managing installed applications.
+- Uninstall button for removing installed applications.
+- App rating, reviews, downloads, and size information.
+- Modern and clean UI with a purple-themed design.
+- Custom loading and 404 pages.
+- Dynamic app details using Next.js dynamic routing.
+- Application data is loaded from a JSON data source.
 
-## Learn More
+---
 
-To learn more about Next.js, take a look at the following resources:
+## Technologies Used
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- Next.js
+- React
+- TypeScript
+- Tailwind CSS
+- DaisyUI
+- React Toastify
+- Next.js Dynamic Routing
+- Context API
+- JSON Data
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+---
 
-## Deploy on Vercel
+## Project Structure
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```text
+src/
+├── app/
+│   ├── apps/
+│   │   ├── [id]/
+│   │   │   └── page.tsx
+│   │   └── installation/
+│   │       └── page.tsx
+│   ├── page.tsx
+│   ├── layout.tsx
+│   ├── loading.tsx
+│   └── not-found.tsx
+│
+├── components/
+│   ├── Apps/
+│   │   └── InstallAppButton.tsx
+│   ├── homepage/
+│   │   ├── Banner.tsx
+│   │   └── TrendingApp.tsx
+│   └── shared/
+│       ├── AppCard.tsx
+│       └── Navber.jsx
+│
+├── context/
+│   └── AppContext.tsx
+│
+├── lib/
+│   └── apps.ts
+│
+└── types/
+    └── app.type.ts
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+public/
+└── data.json
