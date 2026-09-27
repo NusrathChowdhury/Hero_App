@@ -15,28 +15,45 @@ const AppDetailsPage = async ({ params }: Props) => {
 
   const app = apps.find((item) => item.id.toString() === id);
 
+  // App Not Found
   if (!app) {
     return (
-      <main className="flex min-h-[70vh] items-center justify-center bg-white px-6">
-        <div className="text-center">
-          <div className="mx-auto flex h-20 w-20 items-center justify-center rounded-3xl bg-purple-100 text-3xl">
+      <main className="flex min-h-[75vh] items-center justify-center bg-gradient-to-b from-purple-50 via-white to-white px-6">
+        <div className="w-full max-w-lg rounded-[2rem] border border-purple-100 bg-white p-10 text-center shadow-xl shadow-purple-100/40">
+
+          <div className="mx-auto flex h-24 w-24 items-center justify-center rounded-3xl bg-purple-100 text-5xl">
             😕
           </div>
 
-          <h1 className="mt-6 text-3xl font-bold text-gray-900">
+          <p className="mt-7 text-sm font-semibold uppercase tracking-wider text-purple-600">
             App Not Found
-          </h1>
-
-          <p className="mt-3 text-gray-500">
-            Sorry, we couldn't find the app you're looking for.
           </p>
 
-          <Link
-            href="/apps"
-            className="btn btn-primary mt-6 rounded-full px-6"
-          >
-            ← Back to Apps
-          </Link>
+          <h1 className="mt-2 text-3xl font-extrabold text-gray-900 sm:text-4xl">
+            We couldn't find this app
+          </h1>
+
+          <p className="mx-auto mt-4 max-w-md leading-7 text-gray-500">
+            The app you're looking for may have been removed or the link
+            you're using may be incorrect.
+          </p>
+
+          <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
+            <Link
+              href="/apps"
+              className="btn btn-primary rounded-full px-7 shadow-lg shadow-purple-200"
+            >
+              Browse Apps
+            </Link>
+
+            <Link
+              href="/"
+              className="btn btn-outline rounded-full border-purple-200 px-7 text-purple-600 hover:border-purple-500 hover:bg-purple-50"
+            >
+              Go Home
+            </Link>
+          </div>
+
         </div>
       </main>
     );
@@ -44,10 +61,9 @@ const AppDetailsPage = async ({ params }: Props) => {
 
   return (
     <main className="min-h-screen bg-gradient-to-b from-purple-50/70 via-white to-white">
-      {/* Hero */}
       <section className="px-5 pb-16 pt-10 sm:px-8 lg:px-10 lg:pt-14">
         <div className="mx-auto max-w-6xl">
-          {/* Back Button */}
+
           <Link
             href="/apps"
             className="mb-8 inline-flex items-center gap-2 text-sm font-semibold text-gray-500 transition hover:text-purple-600"
@@ -56,14 +72,12 @@ const AppDetailsPage = async ({ params }: Props) => {
             Back to Apps
           </Link>
 
-          {/* Main App Card */}
           <div className="overflow-hidden rounded-3xl border border-purple-100 bg-white shadow-xl shadow-purple-100/40">
             <div className="p-6 sm:p-10 lg:p-12">
 
-              {/* App Information */}
+              {/* Header */}
               <div className="flex flex-col gap-8 md:flex-row md:items-center">
-                
-                {/* App Image */}
+
                 <div className="shrink-0">
                   <img
                     src={app.image}
@@ -72,8 +86,8 @@ const AppDetailsPage = async ({ params }: Props) => {
                   />
                 </div>
 
-                {/* Details */}
                 <div className="flex-1">
+
                   <div className="mb-3">
                     <span className="rounded-full bg-purple-100 px-3 py-1 text-xs font-semibold text-purple-600">
                       Featured App
@@ -91,12 +105,10 @@ const AppDetailsPage = async ({ params }: Props) => {
                     </span>
                   </p>
 
-                  {/* Rating */}
                   <div className="mt-5 flex flex-wrap items-center gap-4">
+
                     <div className="flex items-center gap-2">
-                      <div className="rating rating-sm">
-                        <span className="text-lg text-yellow-400">★</span>
-                      </div>
+                      <span className="text-lg text-yellow-400">★</span>
 
                       <span className="font-bold text-gray-900">
                         {app.ratingAvg}
@@ -114,12 +126,15 @@ const AppDetailsPage = async ({ params }: Props) => {
                     <span className="text-sm text-gray-500">
                       {app.downloads} downloads
                     </span>
+
                   </div>
                 </div>
 
-                {/* Action */}
+                {/* Install */}
                 <div className="shrink-0">
-                  <InstallAppButton app={app}/>                </div>
+                  <InstallAppButton app={app} />
+                </div>
+
               </div>
 
               <div className="divider my-8" />
@@ -142,8 +157,7 @@ const AppDetailsPage = async ({ params }: Props) => {
                 </h2>
 
                 <div className="mt-5 grid grid-cols-1 gap-4 sm:grid-cols-3">
-                  
-                  {/* Downloads */}
+
                   <div className="rounded-2xl border border-purple-100 bg-purple-50/70 p-5">
                     <p className="text-sm font-medium text-gray-500">
                       Downloads
@@ -154,7 +168,6 @@ const AppDetailsPage = async ({ params }: Props) => {
                     </p>
                   </div>
 
-                  {/* Size */}
                   <div className="rounded-2xl border border-purple-100 bg-purple-50/70 p-5">
                     <p className="text-sm font-medium text-gray-500">
                       App Size
@@ -165,7 +178,6 @@ const AppDetailsPage = async ({ params }: Props) => {
                     </p>
                   </div>
 
-                  {/* Rating */}
                   <div className="rounded-2xl border border-purple-100 bg-purple-50/70 p-5">
                     <p className="text-sm font-medium text-gray-500">
                       Rating
@@ -175,20 +187,22 @@ const AppDetailsPage = async ({ params }: Props) => {
                       {app.ratingAvg} / 5
                     </p>
                   </div>
+
                 </div>
               </div>
 
-              {/* Ratings Breakdown */}
+              {/* Ratings */}
               <div className="mt-10">
                 <h2 className="text-2xl font-bold text-gray-900">
                   Ratings & Reviews
                 </h2>
 
                 <div className="mt-5 rounded-2xl border border-base-200 bg-base-100 p-6">
+
                   <div className="flex flex-col gap-6 sm:flex-row sm:items-center">
-                    
-                    {/* Overall Rating */}
+
                     <div className="text-center sm:w-40">
+
                       <p className="text-5xl font-extrabold text-gray-900">
                         {app.ratingAvg}
                       </p>
@@ -200,10 +214,11 @@ const AppDetailsPage = async ({ params }: Props) => {
                       <p className="mt-2 text-sm text-gray-500">
                         {app.reviews} reviews
                       </p>
+
                     </div>
 
-                    {/* Rating Bars */}
                     <div className="flex-1 space-y-3">
+
                       {app.ratings.map((rating) => (
                         <div
                           key={rating.name}
@@ -224,14 +239,17 @@ const AppDetailsPage = async ({ params }: Props) => {
                           </span>
                         </div>
                       ))}
+
                     </div>
 
                   </div>
+
                 </div>
               </div>
 
             </div>
           </div>
+
         </div>
       </section>
     </main>

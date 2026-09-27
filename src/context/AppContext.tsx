@@ -1,8 +1,12 @@
 "use client";
 
 import { TApp } from "@/types/app.type";
-import React, { ReactNode, useState } from "react";
-import { createContext } from "react";
+import React, {
+  ReactNode,
+  useEffect,
+  useState,
+  createContext,
+} from "react";
 
 type TAppContext = {
   installedApps: TApp[];
@@ -17,13 +21,30 @@ export const ApppContext = createContext<TAppContext>({
 const AppContext = ({ children }: { children: ReactNode }) => {
   const [installedApps, setInstalledApps] = useState<TApp[]>([]);
 
-  const sharedData = {
-    installedApps,
-    setInstalledApps,
-  };
+  // Load installed apps from localStorage
+  useEffect(() => {
+    const savedApps = localStorage.getItem("installedApps");
+
+    if (savedApps) {
+      setInstalledApps(JSON.parse(savedApps));
+    }
+  }, []);
+
+  // Save installed apps to localStorage
+  useEffect(() => {
+    localStorage.setItem(
+      "installedApps",
+      JSON.stringify(installedApps)
+    );
+  }, [installedApps]);
 
   return (
-    <ApppContext.Provider value={sharedData}>
+    <ApppContext.Provider
+      value={{
+        installedApps,
+        setInstalledApps,
+      }}
+    >
       {children}
     </ApppContext.Provider>
   );
